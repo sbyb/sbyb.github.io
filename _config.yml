@@ -60,7 +60,7 @@ atom_feed:
 
 
 author:
-  name   : "Shubham Bhardwaj"
+  #name   : "Shubham Bhardwaj"
   avatar : "/assets/images/sbsite.jpg"
   bio    : "Graduate Student at [TIFR STCS](https://www.tcs.tifr.res.in/)"
   links:
