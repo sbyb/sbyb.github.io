@@ -60,7 +60,7 @@ plugins:
 author:
   name   : "Shubham Bhardwaj"
   avatar : "/assets/images/sbsite.jpg"
-  bio    : "Graduate Student at TIFR STCS in Theoretical Computer Science"
+  bio    : "Graduate Student at TIFR STCS."
   links:
     #- label: "Website"
     #  icon: "fas fa-fw fa-link"
