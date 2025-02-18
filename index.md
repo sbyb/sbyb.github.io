@@ -6,4 +6,4 @@ layout: single
 author_profile: true
 ---
 
-I am a first-year PhD student studying theoretical computer science at TIFR.
+I am a first-year PhD student studying theoretical computer science at [STCS,TIFR](https://www.tcs.tifr.res.in/).
