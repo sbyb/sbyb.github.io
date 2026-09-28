@@ -46,7 +46,6 @@ const MonthDate = z
   });
 
 const Link = z.object({ label: z.string(), url: z.string() });
-const Person = z.object({ name: z.string(), url: z.string().optional() });
 const Org = z.object({ name: z.string(), url: z.string().optional() });
 
 const Profile = z.object({
@@ -58,7 +57,6 @@ const Profile = z.object({
   institution: Org.optional(),
   location: z.string().optional(),
   photo: z.string().optional(),
-  advisors: z.array(Person).default([]),
   email: z.string().optional(),
   cv: z.string().optional(),
   interests: z.array(z.string()).default([]),

@@ -31,7 +31,7 @@ const links = profileLinks.flatMap(([key, label, icon]) => {
   return href ? [{ href, label, icon }] : [];
 });
 
-const { department, institution, advisors } = profile;
+const { department, institution } = profile;
 ---
 
 <section class:list={["hero container", { "hero--photo": photo }]} aria-label="Introduction">
@@ -47,19 +47,6 @@ const { department, institution, advisors } = profile;
           {department && institution && <br />}
           {institution && (institution.url ? <a href={institution.url}>{institution.name}</a> : institution.name)}
           {profile.location && <span class="hero__location">{profile.location}</span>}
-        </p>
-      )
-    }
-    {
-      advisors.length > 0 && (
-        <p class="hero__advisor">
-          Advised by{" "}
-          {advisors.map((a, i) => (
-            <>
-              {i > 0 && (i === advisors.length - 1 ? " and " : ", ")}
-              {a.url ? <a href={a.url}>{a.name}</a> : a.name}
-            </>
-          ))}
         </p>
       )
     }

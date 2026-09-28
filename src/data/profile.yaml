@@ -25,13 +25,6 @@ location: Mumbai, India
 # It is resized and optimized automatically.
 photo:
 
-# Your advisor(s), e.g.
-#   - name: Prof. Firstname Lastname
-#     url: https://www.tcs.tifr.res.in/~username/
-advisors:
-  - name: Ramprasad Saptharishi
-    url: https://www.tcs.tifr.res.in/~ramprasad/
-
 # Shown as a clickable link. It is written out by JavaScript so that simple
 # spam bots can't harvest it.
 email:

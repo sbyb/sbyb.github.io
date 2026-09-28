@@ -402,7 +402,7 @@ button {
   grid-template-columns: minmax(0, 1fr);
   align-items: end;
   gap: 2.5rem 4rem;
-  padding-top: clamp(3.5rem, 11vh, 7.5rem);
+  padding-top: clamp(3rem, 9vh, 5.5rem);
   padding-bottom: clamp(3rem, 8vh, 5rem);
 }
 
@@ -411,41 +411,34 @@ button {
 }
 
 .hero__name {
-  font-size: clamp(2.75rem, 1.5rem + 5vw, 5.25rem);
-  font-weight: 450;
-  line-height: 1;
-  letter-spacing: -0.028em;
+  font-size: clamp(2.125rem, 1.5rem + 2.4vw, 2.875rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
 }
 
 .hero__role {
-  margin-top: 1.1rem;
+  margin-top: 0.6rem;
   color: var(--ink-2);
-  font-size: clamp(1.3125rem, 1.1rem + 0.8vw, 1.625rem);
+  font-size: clamp(1.1875rem, 1.1rem + 0.4vw, 1.375rem);
   font-style: italic;
   line-height: 1.35;
 }
 
-.hero__affiliation,
-.hero__advisor {
+.hero__affiliation {
   color: var(--ink-2);
   font: 400 0.9375rem/1.65 var(--sans);
 }
 
 .hero__affiliation {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
-.hero__advisor {
-  margin-top: 0.6rem;
-}
-
-.hero__affiliation a,
-.hero__advisor a {
+.hero__affiliation a {
   text-decoration-color: var(--rule-strong);
 }
 
-.hero__affiliation a:hover,
-.hero__advisor a:hover {
+.hero__affiliation a:hover {
   text-decoration-color: currentColor;
 }
 
