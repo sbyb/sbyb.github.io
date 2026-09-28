@@ -1,0 +1,24 @@
+---
+title: Teaching
+permalink: /teaching/
+---
+{%- assign items = site.data.teaching -%}
+{%- if items and items.size > 0 %}
+<ul class="dated-list dated-list--wide">
+  {%- for t in items %}
+  <li>
+    <span class="dated-label">{{ t.term }}</span>
+    <div class="dated-body">
+      <p class="item-title">{% if t.url %}<a href="{{ t.url }}">{{ t.course }}</a>{% else %}{{ t.course }}{% endif %}</p>
+      <p class="item-meta">
+        {{- t.role -}}
+        {%- if t.institution %}, {{ t.institution }}{% endif -%}
+        {%- if t.instructor %}<span class="sep" aria-hidden="true"> · </span>Instructor: {{ t.instructor }}{% endif -%}
+      </p>
+    </div>
+  </li>
+  {%- endfor %}
+</ul>
+{%- else %}
+<p class="empty-state">No teaching listed yet.</p>
+{%- endif %}

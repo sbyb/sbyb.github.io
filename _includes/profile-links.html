@@ -1,0 +1,21 @@
+{%- comment -%} Row of profile links (email, CV, scholar profiles, socials). {%- endcomment -%}
+{%- assign p = site.data.profile -%}
+{%- assign l = p.links -%}
+<ul class="profile-links">
+  {%- if p.email -%}
+    {%- assign email_parts = p.email | split: "@" -%}
+    <li><a class="chip" href="#contact" data-email-u="{{ email_parts[0] | split: '' | reverse | join: '' }}" data-email-d="{{ email_parts[1] | split: '' | reverse | join: '' }}">{% include icon.html name="mail" %}<span>Email</span></a></li>
+  {%- endif -%}
+  {%- if p.cv -%}
+    <li><a class="chip" href="{{ p.cv | relative_url }}">{% include icon.html name="cv" %}<span>CV</span></a></li>
+  {%- endif -%}
+  {%- if l.google_scholar -%}<li><a class="chip" href="{{ l.google_scholar }}" rel="me noopener">{% include icon.html name="google_scholar" %}<span>Google Scholar</span></a></li>{%- endif -%}
+  {%- if l.dblp -%}<li><a class="chip" href="{{ l.dblp }}" rel="me noopener">{% include icon.html name="dblp" %}<span>DBLP</span></a></li>{%- endif -%}
+  {%- if l.arxiv -%}<li><a class="chip" href="{{ l.arxiv }}" rel="me noopener">{% include icon.html name="arxiv" %}<span>arXiv</span></a></li>{%- endif -%}
+  {%- if l.orcid -%}<li><a class="chip" href="{{ l.orcid }}" rel="me noopener">{% include icon.html name="orcid" %}<span>ORCID</span></a></li>{%- endif -%}
+  {%- if l.github -%}<li><a class="chip" href="{{ l.github }}" rel="me noopener">{% include icon.html name="github" %}<span>GitHub</span></a></li>{%- endif -%}
+  {%- if l.linkedin -%}<li><a class="chip" href="{{ l.linkedin }}" rel="me noopener">{% include icon.html name="linkedin" %}<span>LinkedIn</span></a></li>{%- endif -%}
+  {%- if l.twitter -%}<li><a class="chip" href="{{ l.twitter }}" rel="me noopener">{% include icon.html name="twitter" %}<span>X</span></a></li>{%- endif -%}
+  {%- if l.bluesky -%}<li><a class="chip" href="{{ l.bluesky }}" rel="me noopener">{% include icon.html name="bluesky" %}<span>Bluesky</span></a></li>{%- endif -%}
+  {%- if l.mastodon -%}<li><a class="chip" href="{{ l.mastodon }}" rel="me noopener">{% include icon.html name="mastodon" %}<span>Mastodon</span></a></li>{%- endif -%}
+</ul>

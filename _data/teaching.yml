@@ -1,0 +1,14 @@
+# ---------------------------------------------------------------------------
+# Teaching. Shown on the Teaching page (and linked from the top menu) once
+# there is at least one entry. Listed in the order written here.
+#
+# Example:
+# - course: Design and Analysis of Algorithms
+#   role: Teaching Assistant
+#   institution: TIFR
+#   term: Aug–Dec 2025
+#   url: https://www.tcs.tifr.res.in/...   # optional course page
+#   instructor: Prof. Firstname Lastname   # optional
+# ---------------------------------------------------------------------------
+# Add your entries below this line (remove the leading "# " from the example
+# to use it as a starting point).

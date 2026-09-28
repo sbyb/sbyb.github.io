@@ -1,0 +1,56 @@
+{%- comment -%}
+  One publication entry. Usage: {% include publication.html pub=pub %}
+{%- endcomment -%}
+{%- assign pub = include.pub -%}
+{%- assign me = site.data.profile.name -%}
+{%- assign pid = pub.title | slugify | truncate: 48, "" | prepend: "pub-" -%}
+{%- assign n_authors = pub.authors.size -%}
+<li class="pub">
+  <div class="pub-venue">
+    <span class="venue-badge{% if pub.type == 'preprint' %} is-preprint{% endif %}">
+      {%- if pub.venue -%}{{ pub.venue }}{%- elsif pub.type == "preprint" -%}Preprint{%- elsif pub.type == "thesis" -%}Thesis{%- else -%}{{ pub.year }}{%- endif -%}
+    </span>
+  </div>
+  <div class="pub-body">
+    <h3 class="pub-title">{{ pub.title }}</h3>
+    {%- if n_authors > 0 %}
+    <p class="pub-authors">
+      {%- for a in pub.authors -%}
+        {%- if a == me -%}<span class="me">{{ a }}</span>{%- else -%}{{ a }}{%- endif -%}
+        {%- unless forloop.last -%}
+          {%- if n_authors == 2 %} and {% elsif forloop.rindex == 2 %}, and {% else %}, {% endif -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </p>
+    {%- endif %}
+    {%- if pub.venue_full or pub.note %}
+    <p class="pub-meta">
+      {%- if pub.venue_full %}<span class="pub-venue-full">{{ pub.venue_full }}</span>{% endif -%}
+      {%- if pub.venue_full and pub.note %}<span class="sep" aria-hidden="true"> · </span>{% endif -%}
+      {%- if pub.note %}<span class="pub-note">{{ pub.note }}</span>{% endif -%}
+    </p>
+    {%- endif %}
+    {%- if pub.links or pub.abstract or pub.bibtex %}
+    <div class="pub-links">
+      {%- for link in pub.links %}
+      <a class="pub-link" href="{{ link.url | relative_url }}">{{ link.label }}</a>
+      {%- endfor %}
+      {%- if pub.abstract %}
+      <button class="pub-link" type="button" data-toggle aria-expanded="false" aria-controls="{{ pid }}-abs">Abstract</button>
+      {%- endif %}
+      {%- if pub.bibtex %}
+      <button class="pub-link" type="button" data-toggle aria-expanded="false" aria-controls="{{ pid }}-bib">BibTeX</button>
+      {%- endif %}
+    </div>
+    {%- endif %}
+    {%- if pub.abstract %}
+    <div class="pub-abstract" id="{{ pid }}-abs" hidden>{{ pub.abstract | markdownify }}</div>
+    {%- endif %}
+    {%- if pub.bibtex %}
+    <div class="pub-bibtex" id="{{ pid }}-bib" hidden>
+      <pre><code id="{{ pid }}-bibcode">{{ pub.bibtex | strip | escape }}</code></pre>
+      <button class="copy-btn" type="button" data-copy="{{ pid }}-bibcode">{% include icon.html name="copy" %}<span>Copy</span></button>
+    </div>
+    {%- endif %}
+  </div>
+</li>

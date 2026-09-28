@@ -1,9 +1,13 @@
-main:
- # - title: "Posts"
-  #  url: /posts/
-  #- title: "Categories"
-   # url: /categories/
-  #- title: "Tags"
-   # url: /tags/
-  #- title: "About"
-   # url: /about/
+# Top navigation. An item with `requires` is only shown when that data file
+# (in _data/) has at least one entry, so empty sections never show up.
+- title: About
+  url: /
+- title: Publications
+  url: /publications/
+  requires: publications
+- title: Teaching
+  url: /teaching/
+  requires: teaching
+- title: Talks
+  url: /talks/
+  requires: talks

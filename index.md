@@ -1,9 +1,17 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-layout: single
-author_profile: true
+layout: home
 ---
 
-I am a first-year PhD student studying theoretical computer science at [STCS,TIFR](https://www.tcs.tifr.res.in/).
+I am a PhD student in theoretical computer science at the
+[School of Technology and Computer Science](https://www.tcs.tifr.res.in/) (STCS),
+[Tata Institute of Fundamental Research](https://www.tifr.res.in/) (TIFR), Mumbai.
+
+{% comment %}
+  This is your bio, written in Markdown. A good academic bio is 2-3 short
+  paragraphs covering, for example:
+    - who your advisor is;
+    - what you work on, in a sentence or two a non-specialist can follow;
+    - your previous degree(s), e.g. "Before joining TIFR, I received my
+      B.Tech. in Computer Science from ...".
+  Anything inside this comment block is not shown on the site.
+{% endcomment %}

@@ -1,0 +1,15 @@
+# ---------------------------------------------------------------------------
+# Talks. Shown on the Talks page (and linked from the top menu) once there is
+# at least one entry. Sorted by date automatically.
+#
+# Example:
+# - title: "A Sample Paper Title"
+#   event: STCS Student Seminar
+#   location: TIFR, Mumbai
+#   date: 2026-03-14
+#   links:
+#     - { label: Slides, url: /assets/files/slides-sample.pdf }
+#     - { label: Video, url: "https://youtube.com/..." }
+# ---------------------------------------------------------------------------
+# Add your entries below this line (remove the leading "# " from the example
+# to use it as a starting point).
