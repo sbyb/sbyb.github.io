@@ -10,4 +10,5 @@
 
 I am a PhD student at the [School of Technology and Computer Science](https://www.tcs.tifr.res.in/)
 of the [Tata Institute of Fundamental Research](https://www.tifr.res.in/) (TIFR) in Mumbai,
-where I work in theoretical computer science.
+where I am advised by [Ramprasad Saptharishi](https://www.tifr.res.in/~ramprasad/).
+I work in theoretical computer science, with a focus on complexity theory.

@@ -28,7 +28,9 @@ photo:
 # Your advisor(s), e.g.
 #   - name: Prof. Firstname Lastname
 #     url: https://www.tcs.tifr.res.in/~username/
-advisors: []
+advisors:
+  - name: Ramprasad Saptharishi
+    url: https://www.tifr.res.in/~ramprasad/
 
 # Shown as a clickable link. It is written out by JavaScript so that simple
 # spam bots can't harvest it.
@@ -40,7 +42,8 @@ cv:
 # Research interests, shown under your bio, e.g.
 #   - Computational complexity
 #   - Algorithms
-interests: []
+interests:
+  - Complexity Theory
 
 # Office / postal address, one line per item, e.g.
 #   - Room A-000, School of Technology and Computer Science
