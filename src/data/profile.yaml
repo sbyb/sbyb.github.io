@@ -23,7 +23,7 @@ location: Mumbai, India
 # Portrait: put a photo (ideally 4:5 or square, at least 800 px wide) in
 # src/assets/ and write its file name here, e.g. `photo: profile.jpg`.
 # It is resized and optimized automatically.
-photo:
+photo: profile.jpg
 
 # Shown as a clickable link. It is written out by JavaScript so that simple
 # spam bots can't harvest it.
