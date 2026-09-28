@@ -1,0 +1,72 @@
+---
+import Icon from "./Icon.astro";
+import { isMe, type Publication } from "../lib/data";
+import { block, inline, slugify } from "../lib/text";
+
+interface Props {
+  pub: Publication;
+}
+
+const { pub } = Astro.props;
+const id = `pub-${pub.year}-${slugify(pub.title)}`;
+const n = pub.authors.length;
+const separator = (i: number) => (i === 0 ? "" : n === 2 ? " and " : i === n - 1 ? ", and " : ", ");
+const kicker = pub.venue ?? { preprint: "Preprint", thesis: "Thesis", manuscript: "Manuscript" }[pub.type as string];
+---
+
+<article class="pub" id={id}>
+  {
+    (kicker || pub.award) && (
+      <p class="pub__kicker">
+        {kicker && <span class:list={["pub__venue", { "pub__venue--muted": pub.type === "preprint" }]}>{kicker}</span>}
+        {pub.award && <span class="pub__award">{pub.award}</span>}
+      </p>
+    )
+  }
+  <h3 class="pub__title" set:html={inline(pub.title)} />
+  <p class="pub__authors">
+    {
+      pub.authors.map((author, i) => (
+        <>
+          {separator(i)}
+          {isMe(author) ? <span class="pub__me">{author}</span> : author}
+        </>
+      ))
+    }
+  </p>
+  {pub.venue_full && <p class="pub__where" set:html={inline(pub.venue_full)} />}
+  {pub.note && <p class="pub__note" set:html={inline(pub.note)} />}
+  {
+    (pub.links.length > 0 || pub.abstract || pub.bibtex) && (
+      <div class="pub__actions">
+        {pub.links.map((link) => (
+          <a href={link.url}>{link.label}</a>
+        ))}
+        {pub.abstract && (
+          <button type="button" data-toggle aria-expanded="false" aria-controls={`${id}-abstract`}>
+            Abstract
+            <Icon name="chevron" />
+          </button>
+        )}
+        {pub.bibtex && (
+          <button type="button" data-toggle aria-expanded="false" aria-controls={`${id}-bibtex`}>
+            BibTeX
+            <Icon name="chevron" />
+          </button>
+        )}
+      </div>
+    )
+  }
+  {pub.abstract && <div class="pub__abstract" id={`${id}-abstract`} hidden set:html={block(pub.abstract)} />}
+  {
+    pub.bibtex && (
+      <div class="pub__bibtex" id={`${id}-bibtex`} hidden>
+        <pre id={`${id}-bibtex-code`}>{pub.bibtex.trim()}</pre>
+        <button type="button" class="copy-button" data-copy={`${id}-bibtex-code`}>
+          <Icon name="copy" />
+          <span data-copy-label>Copy</span>
+        </button>
+      </div>
+    )
+  }
+</article>

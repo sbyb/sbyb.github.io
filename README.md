@@ -1,65 +1,85 @@
 # sbyb.github.io
 
-Personal academic website of Shubham Bhardwaj, served by GitHub Pages at
-<https://sbyb.github.io>.
+Personal academic website of Shubham Bhardwaj, served at <https://sbyb.github.io>.
 
-The site is a small custom Jekyll theme with no external theme or build step.
-GitHub Pages builds it automatically on every push to the default branch.
+Built with [Astro](https://astro.build) as a fully static site (no JavaScript
+framework, just a few lines of script for dark mode and toggles), and deployed
+to GitHub Pages by GitHub Actions on every push to `master`.
 
 ## Editing content
 
-Almost everything lives in plain text files. Sections with no entries are
-hidden automatically, so you only fill in what you have.
+All content lives in `src/data/`. Sections with no entries are hidden
+automatically, so fill in only what you have. Each file has a commented
+example at the top.
 
-| What | Where |
+| What | File |
 | --- | --- |
-| Name, affiliation, advisor, email, photo, CV, research interests, profile links | `_data/profile.yml` |
-| Bio paragraphs (Markdown) | `index.md` |
-| News | `_data/news.yml` |
-| Publications | `_data/publications.yml` |
-| Teaching | `_data/teaching.yml` |
-| Talks | `_data/talks.yml` |
-| Top menu | `_data/navigation.yml` |
-| Site title / description for search engines | `_config.yml` |
+| Name, position, affiliation, advisor, email, CV, interests, profile links | `src/data/profile.yaml` |
+| Bio (Markdown) | `src/data/bio.md` |
+| News | `src/data/news.yaml` |
+| Publications | `src/data/publications.yaml` |
+| Teaching | `src/data/teaching.yaml` |
+| Talks | `src/data/talks.yaml` |
 
-Each data file has a commented example at the top showing every supported field.
+- **Math:** titles, abstracts, news and the bio support LaTeX math, e.g.
+  `$\mathsf{AC}^0[p]$`. It is typeset at build time with KaTeX.
+- **Photo:** put a portrait (ideally 4:5 or square, at least 800 px wide) in
+  `src/assets/`, e.g. `src/assets/profile.jpg`, and set `photo: profile.jpg`.
+  It is resized and converted to modern formats automatically.
+- **CV and other files:** anything in `public/` is served as-is. Put your CV at
+  `public/cv.pdf` and set `cv: /cv.pdf`; slides can go in `public/slides/`.
+- **Publications:** list your name in `authors` exactly as in `profile.yaml`
+  (or add other spellings to `author_names`) and it is highlighted
+  automatically. Add `abstract` or `bibtex` to get expandable Abstract/BibTeX
+  buttons, with a copy button for BibTeX.
+- The content is validated when the site builds, so a typo (such as a missing
+  `year`) fails the build with a message naming the file and the field
+  instead of producing a broken page.
 
-**Photo:** add a square headshot (at least 400×400 px) as `assets/img/profile.jpg`
-and set `photo: /assets/img/profile.jpg` in `_data/profile.yml`. Until then a
-monogram with your initials is shown.
+You can edit these files directly on GitHub. The site redeploys a minute or two
+after you commit.
 
-**CV:** add `assets/files/cv.pdf` and set `cv: /assets/files/cv.pdf`. A "CV" link
-then appears in the menu and next to your profile links.
+## Working locally
 
-**Publications:** list your name in `authors` exactly as it appears in
-`_data/profile.yml` and it is highlighted automatically. Mark papers with
-`selected: true` to feature them on the home page. Otherwise the home page shows
-the five most recent. Add `bibtex` or `abstract` to get expandable
-BibTeX/Abstract buttons.
-
-## Previewing locally (optional)
-
-Requires Ruby 3.x.
+Requires Node.js 22.12 or newer.
 
 ```sh
-bundle install
-bundle exec jekyll serve --livereload
+npm install
+npm run dev       # live preview at http://localhost:4321
+npm run build     # production build into dist/
+npm run check     # type-check the project
 ```
 
-Then open <http://localhost:4000>.
+## Deployment
+
+`.github/workflows/deploy.yml` builds the site and publishes it to GitHub
+Pages. One-time setup: in the repository's **Settings → Pages → Build and
+deployment**, set **Source** to **GitHub Actions**.
+
+## Design
+
+- Typefaces: [Newsreader](https://fonts.google.com/specimen/Newsreader) (text
+  and display, with optical sizing) and [Inter](https://rsms.me/inter/) (labels
+  and UI), both self-hosted and preloaded, with metric-matched fallbacks so the
+  page doesn't jump while fonts load.
+- All colors are CSS variables at the top of `src/styles/global.css`; light and
+  dark mode swap them. Dark mode follows the visitor's system setting, with a
+  toggle that remembers their choice.
+- `public/og.png` is the preview image shown when the site is shared on Slack,
+  WhatsApp, LinkedIn, etc.
 
 ## Structure
 
 ```
-_config.yml          site settings
-_data/               all content (profile, news, publications, ...)
-_includes/           header, footer, icons, publication entry
-_layouts/            default, home, page
-assets/css/main.css  all styles (colors are CSS variables at the top; light + dark mode)
-assets/js/main.js    dark-mode toggle, BibTeX/abstract toggles, spam-safe email link
-index.md             home page / bio
-publications.html    full publication list, grouped by year
-teaching.html        teaching page
-talks.html           talks page
-404.html             not-found page
+src/
+  data/          your content (edit these)
+  assets/        your photo
+  components/    Header, Hero, Section, Publication, Icon, Footer
+  layouts/       Base.astro (page shell, meta tags, fonts)
+  lib/           content loading/validation, Markdown + math rendering
+  pages/         index.astro (home), 404.astro
+  scripts/       dark mode, BibTeX/abstract toggles, spam-safe email, menu highlighting
+  styles/        global.css
+public/          files served as-is (favicon, preview image, CV, ...)
+astro.config.mjs site URL, fonts, KaTeX
 ```

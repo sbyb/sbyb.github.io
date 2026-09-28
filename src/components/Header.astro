@@ -1,0 +1,48 @@
+---
+import Icon from "./Icon.astro";
+import { profile } from "../lib/data";
+
+export interface NavItem {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  nav: NavItem[];
+}
+
+const { nav } = Astro.props;
+const isHome = Astro.url.pathname === "/";
+---
+
+<header class="site-header" data-header data-home={isHome ? "" : undefined}>
+  <div class="container site-header__inner">
+    <a class="site-header__name" href="/">{profile.name}</a>
+    <nav class="site-nav" aria-label="Sections">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={`/#${item.id}`} data-nav={item.id}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        {
+          profile.cv && (
+            <li>
+              <a href={profile.cv} class="site-nav__cv">
+                CV
+              </a>
+            </li>
+          )
+        }
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between light and dark mode">
+      <Icon name="moon" class="theme-toggle__moon" />
+      <Icon name="sun" class="theme-toggle__sun" />
+    </button>
+  </div>
+</header>
