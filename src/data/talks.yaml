@@ -1,0 +1,11 @@
+# ---------------------------------------------------------------------------
+# Talks. Sorted by date automatically (newest first).
+#
+# - title: A Sample Paper Title
+#   event: STCS Student Seminar
+#   location: TIFR, Mumbai
+#   date: 2026-03-14
+#   links:
+#     - { label: Slides, url: /slides/sample.pdf }
+#     - { label: Video, url: "https://www.youtube.com/watch?v=..." }
+# ---------------------------------------------------------------------------

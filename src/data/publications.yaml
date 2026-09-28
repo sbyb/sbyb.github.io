@@ -1,0 +1,27 @@
+# ---------------------------------------------------------------------------
+# Publications, grouped by year on the site (newest first). Within a year
+# they keep the order written here. Your name is highlighted automatically.
+# Titles, notes and abstracts support $math$, e.g. "Lower bounds for $\mathsf{AC}^0[p]$".
+#
+# - title: A Sample Paper Title
+#   authors: [Alice Author, Shubham Bhardwaj, Bob Author]   # required
+#   year: 2026                                               # required
+#   venue: SODA 2027              # short label, e.g. "STOC 2026", "ToC", "Preprint"
+#   venue_full: Proceedings of the 2027 ACM-SIAM Symposium on Discrete Algorithms
+#   type: conference              # conference | journal | preprint | thesis | manuscript
+#   note: Invited to the SICOMP special issue          # optional
+#   award: Best Student Paper                          # optional, shown as a badge
+#   links:
+#     - { label: arXiv, url: "https://arxiv.org/abs/2601.00000" }
+#     - { label: ECCC,  url: "https://eccc.weizmann.ac.il/report/2026/000/" }
+#     - { label: Slides, url: /slides/sample.pdf }      # files in public/slides/
+#   abstract: >-
+#     Optional. Shown behind an "Abstract" toggle.
+#   bibtex: |
+#     @inproceedings{AuthorBhardwajAuthor27,
+#       title     = {A Sample Paper Title},
+#       author    = {Author, Alice and Bhardwaj, Shubham and Author, Bob},
+#       booktitle = {Proceedings of SODA 2027},
+#       year      = {2027}
+#     }
+# ---------------------------------------------------------------------------

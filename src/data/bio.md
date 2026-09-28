@@ -1,0 +1,13 @@
+<!--
+  Your bio, in Markdown. Math works too: $\mathsf{P} \neq \mathsf{NP}$.
+
+  A strong academic bio is two or three short paragraphs:
+    1. where you are, and who your advisor is;
+    2. what you work on, in a sentence or two a non-specialist can follow;
+    3. where you studied before, e.g. "Before joining TIFR, I received my
+       B.Tech. in Computer Science from ...".
+-->
+
+I am a PhD student at the [School of Technology and Computer Science](https://www.tcs.tifr.res.in/)
+of the [Tata Institute of Fundamental Research](https://www.tifr.res.in/) (TIFR) in Mumbai,
+where I work in theoretical computer science.

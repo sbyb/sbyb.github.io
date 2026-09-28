@@ -1,0 +1,9 @@
+# ---------------------------------------------------------------------------
+# News. Sorted by date automatically (newest first). `text` supports
+# Markdown links and $math$. A date can be a full date or just a month.
+#
+# - date: 2026-09-01
+#   text: Our paper was accepted to [SODA 2027](https://www.siam.org/conferences-events/siam-conferences/soda27/).
+# - date: 2026-07
+#   text: Attending the summer school on complexity theory.
+# ---------------------------------------------------------------------------

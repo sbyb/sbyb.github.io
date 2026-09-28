@@ -1,0 +1,64 @@
+# ---------------------------------------------------------------------------
+# Your profile. Anything left empty is simply hidden on the site.
+# ---------------------------------------------------------------------------
+
+name: Shubham Bhardwaj
+
+# How your name appears in author lists. Every spelling listed here is
+# highlighted in publications (e.g. add "S. Bhardwaj" if you use it).
+author_names:
+  - Shubham Bhardwaj
+
+position: PhD Student
+field: Theoretical Computer Science
+
+department:
+  name: School of Technology and Computer Science
+  url: https://www.tcs.tifr.res.in/
+institution:
+  name: Tata Institute of Fundamental Research
+  url: https://www.tifr.res.in/
+location: Mumbai, India
+
+# Portrait: put a photo (ideally 4:5 or square, at least 800 px wide) in
+# src/assets/ and write its file name here, e.g. `photo: profile.jpg`.
+# It is resized and optimized automatically.
+photo:
+
+# Your advisor(s), e.g.
+#   - name: Prof. Firstname Lastname
+#     url: https://www.tcs.tifr.res.in/~username/
+advisors: []
+
+# Shown as a clickable link. It is written out by JavaScript so that simple
+# spam bots can't harvest it.
+email:
+
+# CV: put the PDF in public/ (e.g. public/cv.pdf) and write `cv: /cv.pdf`.
+cv:
+
+# Research interests, shown under your bio, e.g.
+#   - Computational complexity
+#   - Algorithms
+interests: []
+
+# Office / postal address, one line per item, e.g.
+#   - Room A-000, School of Technology and Computer Science
+#   - Tata Institute of Fundamental Research
+#   - Homi Bhabha Road, Colaba, Mumbai 400005
+address: []
+
+# Profile links. Leave a line empty to hide it.
+links:
+  google_scholar:   # https://scholar.google.com/citations?user=...
+  dblp:             # https://dblp.org/pid/....html
+  arxiv:            # https://arxiv.org/a/bhardwaj_s_1
+  orcid:            # https://orcid.org/0000-0000-0000-0000
+  github: https://github.com/sbyb
+  linkedin:         # https://www.linkedin.com/in/...
+  bluesky:          # https://bsky.app/profile/...
+  mastodon:         # https://mathstodon.xyz/@...
+  twitter:          # https://x.com/...
+
+# Number of news items shown before the rest are folded under "Earlier news".
+news_limit: 5

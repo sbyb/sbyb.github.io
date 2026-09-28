@@ -1,0 +1,175 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import Publication from "../components/Publication.astro";
+import Icon from "../components/Icon.astro";
+import { formatMonth, news, profile, publications, publicationsByYear, talks, teaching } from "../lib/data";
+import { block, hasMath, inline } from "../lib/text";
+import bioSource from "../data/bio.md?raw";
+
+const bioText = bioSource.replace(/<!--[\s\S]*?-->/g, "").trim();
+const hasContact = Boolean(profile.email) || profile.address.length > 0;
+
+const sections = [
+  { id: "about", label: "About", show: bioText.length > 0 || profile.interests.length > 0 },
+  { id: "news", label: "News", show: news.length > 0 },
+  { id: "publications", label: "Publications", show: publications.length > 0 },
+  { id: "teaching", label: "Teaching", show: teaching.length > 0 },
+  { id: "talks", label: "Talks", show: talks.length > 0 },
+  { id: "contact", label: "Contact", show: hasContact },
+].filter((s) => s.show);
+const shown = new Set(sections.map((s) => s.id));
+const label = (id: string) => sections.find((s) => s.id === id)!.label;
+
+const math = [
+  bioText,
+  ...news.map((n) => n.text),
+  ...publications.flatMap((p) => [p.title, p.venue_full, p.note, p.abstract]),
+  ...talks.map((t) => t.title),
+].some(hasMath);
+
+const recentNews = news.slice(0, profile.news_limit);
+const earlierNews = news.slice(profile.news_limit);
+---
+
+<Base nav={sections.length > 1 ? sections : []} math={math}>
+  <Hero />
+
+  {
+    shown.has("about") && (
+      <Section id="about" label={label("about")}>
+        {bioText.length > 0 && (
+          <div class="prose" set:html={block(bioText)} />
+        )}
+        {profile.interests.length > 0 && (
+          <div class="interests">
+            <h3 class="interests__title">Research interests</h3>
+            <ul class="interests__list">
+              {profile.interests.map((interest) => (
+                <li set:html={inline(interest)} />
+              ))}
+            </ul>
+          </div>
+        )}
+      </Section>
+    )
+  }
+
+  {
+    shown.has("news") && (
+      <Section id="news" label={label("news")}>
+        <ul class="timeline">
+          {recentNews.map((item) => (
+            <li>
+              <time datetime={item.date.toISOString().slice(0, 10)}>{formatMonth(item.date)}</time>
+              <p set:html={inline(item.text)} />
+            </li>
+          ))}
+        </ul>
+        {earlierNews.length > 0 && (
+          <details class="more">
+            <summary>
+              Earlier news
+              <Icon name="chevron" />
+            </summary>
+            <ul class="timeline">
+              {earlierNews.map((item) => (
+                <li>
+                  <time datetime={item.date.toISOString().slice(0, 10)}>{formatMonth(item.date)}</time>
+                  <p set:html={inline(item.text)} />
+                </li>
+              ))}
+            </ul>
+          </details>
+        )}
+      </Section>
+    )
+  }
+
+  {
+    shown.has("publications") && (
+      <Section id="publications" label={label("publications")}>
+        {publicationsByYear.map(([year, pubs]) => (
+          <div class="year-group">
+            <h3 class="year-group__year">{year}</h3>
+            {pubs.map((pub) => (
+              <Publication pub={pub} />
+            ))}
+          </div>
+        ))}
+      </Section>
+    )
+  }
+
+  {
+    shown.has("teaching") && (
+      <Section id="teaching" label={label("teaching")}>
+        <ul class="entries">
+          {teaching.map((t) => (
+            <li class="entry">
+              {t.term && <p class="entry__when">{t.term}</p>}
+              <div>
+                <p class="entry__title">{t.url ? <a href={t.url}>{t.course}</a> : t.course}</p>
+                <p class="entry__meta">
+                  {[t.role, t.institution].filter(Boolean).join(", ")}
+                  {t.instructor && <span class="entry__aside"> · Instructor: {t.instructor}</span>}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </Section>
+    )
+  }
+
+  {
+    shown.has("talks") && (
+      <Section id="talks" label={label("talks")}>
+        <ul class="entries">
+          {talks.map((t) => (
+            <li class="entry">
+              <p class="entry__when">
+                <time datetime={t.date.toISOString().slice(0, 10)}>{formatMonth(t.date)}</time>
+              </p>
+              <div>
+                <p class="entry__title" set:html={inline(t.title)} />
+                <p class="entry__meta">{[t.event, t.location].filter(Boolean).join(", ")}</p>
+                {t.links.length > 0 && (
+                  <div class="pub__actions">
+                    {t.links.map((link) => (
+                      <a href={link.url}>{link.label}</a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </Section>
+    )
+  }
+
+  {
+    shown.has("contact") && (
+      <Section id="contact" label={label("contact")}>
+        <div class="contact">
+          {profile.email && (
+            <p class="contact__email">
+              <a href="#contact" data-email={[...profile.email].reverse().join("")} data-email-text>
+                {profile.email.replace("@", " [at] ").replaceAll(".", " [dot] ")}
+              </a>
+            </p>
+          )}
+          {profile.address.length > 0 && (
+            <address class="contact__address">
+              {profile.address.map((line) => (
+                <span>{line}</span>
+              ))}
+            </address>
+          )}
+        </div>
+      </Section>
+    )
+  }
+</Base>

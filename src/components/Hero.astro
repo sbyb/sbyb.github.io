@@ -1,0 +1,110 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import Icon, { type IconName } from "./Icon.astro";
+import { profile } from "../lib/data";
+
+const photos = import.meta.glob<{ default: ImageMetadata }>("../assets/*.{jpg,jpeg,png,webp,avif}", { eager: true });
+let photo: ImageMetadata | undefined;
+if (profile.photo) {
+  const match = Object.entries(photos).find(([path]) => path.endsWith(`/${profile.photo}`));
+  if (!match) {
+    const available = Object.keys(photos).map((p) => p.split("/").pop()).join(", ") || "none";
+    throw new Error(`profile.yaml: photo "${profile.photo}" not found in src/assets/ (found: ${available})`);
+  }
+  photo = match[1].default;
+}
+
+const profileLinks: Array<[keyof typeof profile.links, string, IconName]> = [
+  ["google_scholar", "Google Scholar", "google_scholar"],
+  ["dblp", "DBLP", "dblp"],
+  ["arxiv", "arXiv", "arxiv"],
+  ["orcid", "ORCID", "orcid"],
+  ["github", "GitHub", "github"],
+  ["linkedin", "LinkedIn", "linkedin"],
+  ["bluesky", "Bluesky", "bluesky"],
+  ["mastodon", "Mastodon", "mastodon"],
+  ["twitter", "X", "twitter"],
+];
+const links = profileLinks.flatMap(([key, label, icon]) => {
+  const href = profile.links[key];
+  return href ? [{ href, label, icon }] : [];
+});
+
+const { department, institution, advisors } = profile;
+---
+
+<section class:list={["hero container", { "hero--photo": photo }]} aria-label="Introduction">
+  <div class="hero__text">
+    <h1 class="hero__name">{profile.name}</h1>
+    <p class="hero__role">
+      {profile.position}{profile.field && <> in {profile.field}</>}
+    </p>
+    {
+      (department || institution) && (
+        <p class="hero__affiliation">
+          {department && (department.url ? <a href={department.url}>{department.name}</a> : department.name)}
+          {department && institution && <br />}
+          {institution && (institution.url ? <a href={institution.url}>{institution.name}</a> : institution.name)}
+          {profile.location && <span class="hero__location">{profile.location}</span>}
+        </p>
+      )
+    }
+    {
+      advisors.length > 0 && (
+        <p class="hero__advisor">
+          Advised by{" "}
+          {advisors.map((a, i) => (
+            <>
+              {i > 0 && (i === advisors.length - 1 ? " and " : ", ")}
+              {a.url ? <a href={a.url}>{a.name}</a> : a.name}
+            </>
+          ))}
+        </p>
+      )
+    }
+    {
+      (profile.email || profile.cv || links.length > 0) && (
+        <ul class="hero__links">
+          {profile.email && (
+            <li>
+              <a class="button button--primary" href="#contact" data-email={[...profile.email].reverse().join("")}>
+                <Icon name="mail" />
+                Email
+              </a>
+            </li>
+          )}
+          {profile.cv && (
+            <li>
+              <a class="button" href={profile.cv}>
+                <Icon name="cv" />
+                CV
+              </a>
+            </li>
+          )}
+          {links.map((link) => (
+            <li>
+              <a class="button" href={link.href} rel="me">
+                <Icon name={link.icon} />
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+  {
+    photo && (
+      <Image
+        class="hero__photo"
+        src={photo}
+        alt={`Portrait of ${profile.name}`}
+        widths={[240, 360, 480, 720]}
+        sizes="(max-width: 760px) 8.5rem, 15rem"
+        loading="eager"
+        fetchpriority="high"
+      />
+    )
+  }
+</section>
