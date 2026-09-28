@@ -408,6 +408,7 @@ button {
 
 .hero--photo {
   grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
 }
 
 .hero__name {
