@@ -14,7 +14,7 @@ const hasContact = Boolean(profile.email) || profile.address.length > 0;
 const sections = [
   { id: "about", label: "About", show: bioText.length > 0 || profile.interests.length > 0 },
   { id: "news", label: "News", show: news.length > 0 },
-  { id: "publications", label: "Publications", show: publications.length > 0 },
+  { id: "papers", label: "Papers", show: publications.length > 0 },
   { id: "teaching", label: "Teaching", show: teaching.length > 0 },
   { id: "talks", label: "Talks", show: talks.length > 0 },
   { id: "contact", label: "Contact", show: hasContact },
@@ -88,8 +88,8 @@ const earlierNews = news.slice(profile.news_limit);
   }
 
   {
-    shown.has("publications") && (
-      <Section id="publications" label={label("publications")}>
+    shown.has("papers") && (
+      <Section id="papers" label={label("papers")}>
         {publicationsByYear.map(([year, pubs]) => (
           <div class="year-group">
             <h3 class="year-group__year">{year}</h3>
