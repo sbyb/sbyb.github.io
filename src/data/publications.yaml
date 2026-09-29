@@ -25,3 +25,18 @@
 #       year      = {2027}
 #     }
 # ---------------------------------------------------------------------------
+
+- title: Unconditional Separation Between LL and CLL
+  authors: [Shubham Bhardwaj]
+  year: 2026
+  venue: FSTTCS 2026
+  note: To appear in FSTTCS 2026.
+
+- title: Hitting Sets for Polynomials with Small Partial Derivative Spaces
+  authors: [Shubham Bhardwaj, Ramprasad Saptharishi]
+  year: 2026
+  type: preprint
+  venue: Preprint
+  links:
+    - { label: arXiv, url: "https://arxiv.org/abs/2609.34436" }
+    - { label: ECCC, url: "https://eccc.weizmann.ac.il/report/2026/217/" }
