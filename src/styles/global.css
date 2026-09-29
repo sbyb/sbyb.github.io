@@ -683,10 +683,6 @@ main {
   font-size: 1.0625rem;
 }
 
-.pub__me {
-  color: var(--ink);
-  font-weight: 600;
-}
 
 .pub__where {
   margin-top: 0.1rem;

@@ -9,7 +9,9 @@ interface Props {
 
 const { pub } = Astro.props;
 const id = `pub-${pub.year}-${slugify(pub.title)}`;
-const n = pub.authors.length;
+// Show co-authors only ("with A, B, and C"); solo papers get no author line.
+const coauthors = pub.authors.filter((author) => !isMe(author));
+const n = coauthors.length;
 const separator = (i: number) => (i === 0 ? "" : n === 2 ? " and " : i === n - 1 ? ", and " : ", ");
 const kicker = pub.venue ?? { preprint: "Preprint", thesis: "Thesis", manuscript: "Manuscript" }[pub.type as string];
 ---
@@ -24,16 +26,19 @@ const kicker = pub.venue ?? { preprint: "Preprint", thesis: "Thesis", manuscript
     )
   }
   <h3 class="pub__title" set:html={inline(pub.title)} />
-  <p class="pub__authors">
-    {
-      pub.authors.map((author, i) => (
-        <>
-          {separator(i)}
-          {isMe(author) ? <span class="pub__me">{author}</span> : author}
-        </>
-      ))
-    }
-  </p>
+  {
+    n > 0 && (
+      <p class="pub__authors">
+        with{" "}
+        {coauthors.map((author, i) => (
+          <>
+            {separator(i)}
+            {author}
+          </>
+        ))}
+      </p>
+    )
+  }
   {pub.venue_full && <p class="pub__where" set:html={inline(pub.venue_full)} />}
   {pub.note && <p class="pub__note" set:html={inline(pub.note)} />}
   {
