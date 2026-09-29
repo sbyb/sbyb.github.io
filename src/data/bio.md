@@ -13,6 +13,6 @@ of the [Tata Institute of Fundamental Research](https://www.tifr.res.in/) (TIFR)
 where I am advised by [Ramprasad Saptharishi](https://www.tcs.tifr.res.in/~ramprasad/).
 I work in theoretical computer science, with a focus on complexity theory.
 
-Before starting my PhD, I spent a year working with Sandeep Sen.
+Before starting my PhD, I spent a year working with [Sandeep Sen](https://www.cse.iitd.ac.in/~ssen/).
 Prior to that, I received my B.Math. and M.Math. degrees from the
 [Indian Statistical Institute, Bangalore](https://www.isibang.ac.in/).
