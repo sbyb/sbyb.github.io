@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+# The CV is shared by direct link only; keep it out of search results.
+Disallow: /cv.pdf
 
 Sitemap: https://sbyb.github.io/sitemap-index.xml
