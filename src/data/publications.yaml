@@ -40,3 +40,5 @@
   authors: [Shubham Bhardwaj]
   year: 2026
   venue: FSTTCS 2026
+  links:
+    - { label: arXiv, url: "https://arxiv.org/abs/2610.15554" }
