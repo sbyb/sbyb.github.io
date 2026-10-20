@@ -42,3 +42,4 @@
   venue: FSTTCS 2026
   links:
     - { label: arXiv, url: "https://arxiv.org/abs/2610.15554" }
+    - { label: ECCC, url: "https://eccc.weizmann.ac.il/report/2026/252/" }
